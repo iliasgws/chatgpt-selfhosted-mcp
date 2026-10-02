@@ -1,0 +1,17 @@
+[Unit]
+Description=Private authenticated Desktop Commander MCP Gateway
+After=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=%h/.config/desktop-mcp-gateway/auth.env
+Environment=SHARP_IGNORE_GLOBAL_LIBVIPS=1
+ExecStart=%h/.local/bin/mcp-auth-proxy --no-auto-tls --external-url ${EXTERNAL_URL} --trusted-proxies ${TRUSTED_PROXY_IP} --listen ${LISTEN_ADDRESS} --data-path %h/.local/state/desktop-mcp-gateway -- %h/.local/bin/start-dc-mcp
+WorkingDirectory=%h
+UMask=0077
+NoNewPrivileges=yes
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

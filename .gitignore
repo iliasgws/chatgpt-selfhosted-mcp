@@ -1,0 +1,21 @@
+# Secrets and runtime data: never commit
+.env
+*.env
+!*.env.example
+**/auth.env
+**/device.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.token
+.secrets/
+.credentials/
+data/
+state/
+.local/
+node_modules/
+__pycache__/
+*.log
+*.bak
+*.before-*
